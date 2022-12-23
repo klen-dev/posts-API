@@ -33,14 +33,15 @@ async function getPosts() {
         card.appendChild(body);
 
         button.addEventListener("click", (e)=>{
-            body.classList.toggle("d-block")
+            // body.classList.toggle("d-block")
+            alert(`body.textContent = ${i.body}`)
         })
 
         button.textContent = "Batafsil"
         button.classList.add("btn", "btn-success");
         id.textContent = `${i.id}`
         title.textContent = `${i.title}`;
-        body.textContent = `${i.body}`
+        
 
         box.appendChild(card);
     }

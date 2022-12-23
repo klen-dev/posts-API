@@ -34,7 +34,7 @@ async function getPosts() {
 
         button.addEventListener("click", (e)=>{
             // body.classList.toggle("d-block")
-            alert(`body.textContent = ${i.body}`)
+            alert(`${i.body}`)
         })
 
         button.textContent = "Batafsil"

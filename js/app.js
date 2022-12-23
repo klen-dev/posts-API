@@ -2,9 +2,11 @@ let main = document.querySelector("main");
 main.classList.add("container");
 
 let box = document.createElement("div");
-box.classList.add("d-flex", "justify-content-evenly", "flex-wrap", "gap-5");
+let pages = document.createElement("div")
+pages.classList.add("d-flex", "justify-content-center", "gap-2");
+box.classList.add("d-flex", "justify-content-center", "flex-wrap", "gap-5");
 main.appendChild(box);
-
+main.appendChild(pages);
 function render(Arr) {
 
 }
@@ -12,10 +14,39 @@ function render(Arr) {
 axios.defaults.baseURL = "https://jsonplaceholder.typicode.com/";
 
 async function getPosts() {
-    let res = ""
     let data = await axios.get("/posts");
-    console.log(data.data);
-    for (i of data.data) {
+    // console.log(data.data);
+    let res = data.data;
+
+    // let pagesArr = [];
+    // for(i of res){
+    //     if(!pagesArr.includes(i.userId)){
+    //         pagesArr.push(i.userId)
+    //     }
+    // }
+    
+    // for(i of pagesArr){
+    //     page = document.createElement("button");
+    //     page.textContent = i
+    //     pages.appendChild(page);
+    //     page.classList.add("btn", "btn-primary");
+    // }
+
+    // pages.addEventListener("click", (e)=>{
+    //     for(i of data.data){
+    //         if(i.userId == e.target.textContent){
+    //             if(res.include(i.userId)){
+    //                 res.push(i.userId);
+    //             }
+    //         }
+    //     }
+    // });
+
+
+
+    // res = []
+
+    for (i of res) {
         let card = document.createElement("div");
         let id = document.createElement("h2");
         let title = document.createElement("h3");
@@ -32,20 +63,27 @@ async function getPosts() {
         card.appendChild(button)
         card.appendChild(body);
 
-        button.addEventListener("click", (e)=>{
-            // body.classList.toggle("d-block")
-            alert(`${i.body}`)
-        })
-
         button.textContent = "Batafsil"
         button.classList.add("btn", "btn-success");
         id.textContent = `${i.id}`
         title.textContent = `${i.title}`;
+        body.textContent = `${i.body}`;
         
-
         box.appendChild(card);
+        
+        button.id = i.id;
+
+        button.addEventListener("click",()=>{
+            for(i of data.data){
+                if(i.id == button.id){
+                    alert(i.body)
+                }
+            }
+        })
+
+        
     }
-    
+
 }
 
 getPosts();
